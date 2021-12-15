@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="stylesheet/lightmode.css" rel="stylesheet">
+    <title>Home</title>
+</head>
+<body>
+    <section id="navegacion">
+        <div class="navbar" >
+            <a href="index.html"><h1 class="navbar_title">COVID STATS</h1></a>
+            <a href="global.html">
+                <button class="navbar_btn">
+                    <span class="material-icons">public</span>
+                    <p>GLOBAL STATS</p>
+                </button>
+            </a>
+            <a href="country.html">
+                <button class="navbar_btn">
+                    <span class="material-icons">travel_explore</span>
+                    <p>COUNTRY STATS</p>
+                </button>
+            </a>
+            <button class="navbar_btn">
+                <span class="material-icons">info</span>
+                <p>Global Stats</p>
+            </button>
+            <button class="navbar_btn">
+                <span class="material-icons">info</span>
+                <p>Global Stats</p>
+            </button>
+        </div>
+    </section>
+    <section id="countries">
+        <form>
+            <select name='countries' id="countriesList">
+                <script>
+                    const countriesList = document.getElementById('countriesList');
+                    fetch('https://api.covid19api.com/summary')
+                        .then(function(response) {
+                            return response.json();
+                        })
+                        .then(function(json) {
+                            json.Countries.map((country) =>
+                                countriesList.innerHTML += `<option value='${country.slug}'>${country.Country}</option>`
+                            )
+                        })
+                </script>
+            </select>
+            <input type="submit" value="Filter">
+        </form>
+    </section>
+</body>
+</html>
